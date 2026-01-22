@@ -24,9 +24,7 @@ document.getElementById('bookingForm').addEventListener('submit', function (e) {
 
 
 
-// ===============================
 // PESQUISA DE RESERVA (inicio.html)
-// ===============================
 const bookingForm = document.getElementById("bookingForm");
 
 if (bookingForm) {
@@ -46,9 +44,8 @@ if (bookingForm) {
   });
 }
 
-// ===============================
+
 // QUARTOS DISPONÍVEIS (quartos.html)
-// ===============================
 const listaQuartos = document.getElementById("listaQuartos");
 
 const quartos = [
@@ -106,54 +103,6 @@ if (listaQuartos) {
 }
 
 
-// ===============================
-// MINHAS RESERVAS
-// ===============================
-const minhasReservas = document.getElementById("minhasReservas");
-
-if (minhasReservas) {
-  const reservas = JSON.parse(localStorage.getItem("minhasReservas")) || [];
-
-  if (reservas.length === 0) {
-    minhasReservas.innerHTML = "<p>Nenhuma reserva encontrada.</p>";
-  }
-
-  reservas.forEach((r) => {
-    minhasReservas.innerHTML += `
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5>${r.quarto}</h5>
-          <p>Check-in: ${r.checkin}</p>
-          <p>Check-out: ${r.checkout}</p>
-          <strong>Total: € ${r.total}</strong>
-        </div>
-      </div>
-    `;
-  });
-}
-function reservarQuarto(id) {
-  const pesquisa = JSON.parse(localStorage.getItem("pesquisaReserva"));
-  const quarto = quartos.find(q => q.id === id);
-
-  const dias =
-    (new Date(pesquisa.checkout) - new Date(pesquisa.checkin)) /
-    (1000 * 60 * 60 * 24);
-
-  const reserva = {
-    quarto: quarto.nome,
-    precoNoite: quarto.preco,
-    total: dias * quarto.preco,
-    checkin: pesquisa.checkin,
-    checkout: pesquisa.checkout
-  };
-
-  const reservas = JSON.parse(localStorage.getItem("minhasReservas")) || [];
-  reservas.push(reserva);
-
-  localStorage.setItem("minhasReservas", JSON.stringify(reservas));
-
-  window.location.href = "minhas-reservas.html";
-}
 
 
 
@@ -166,24 +115,6 @@ function reservarQuarto(id) {
 
 
 
-// SALVAR DATAS NA PÁGINA INÍCIO
-document.addEventListener("DOMContentLoaded", () => {
-  const bookingForm = document.getElementById("bookingForm");
-
-  if (bookingForm) {
-    bookingForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const checkin = document.getElementById("checkin").value;
-      const checkout = document.getElementById("checkout").value;
-
-      localStorage.setItem("checkin", checkin);
-      localStorage.setItem("checkout", checkout);
-
-      window.location.href = "quartos-disponiveis.html";
-    });
-  }
-});
 
 // FUNÇÃO PARA CALCULAR NOITES
 function calcularNoites(checkin, checkout) {
@@ -236,21 +167,44 @@ function formatarData(data) {
 
 
 
-function selecionarQuarto(nomeQuarto, preco) {
-  localStorage.setItem("quarto", nomeQuarto);
-  localStorage.setItem("preco", preco);
 
-  // Datas vindas do inicio.html
-  const checkin = localStorage.getItem("checkin");
-  const checkout = localStorage.getItem("checkout");
 
-  const data1 = new Date(checkin);
-  const data2 = new Date(checkout);
 
-  const diffTime = data2 - data1;
-  const noites = diffTime / (1000 * 60 * 60 * 24);
 
-  localStorage.setItem("noites", noites);
 
-  window.location.href = "tarifas.html";
-}
+
+// SALVAR DADOS NA PÁGINA INÍCIO
+ document.getElementById("bookingForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const checkin = document.getElementById("checkin").value;
+            const checkout = document.getElementById("checkout").value;
+            const adultos = document.getElementById("adultos").value;
+            const criancas = document.getElementById("criancas").value;
+
+            const d1 = new Date(checkin);
+            const d2 = new Date(checkout);
+
+            if (!checkin || !checkout || d2 <= d1) {
+                alert("Datas inválidas");
+                return;
+            }
+
+            const noites = Math.ceil((d2 - d1) / (1000 * 60 * 60 * 24));
+
+            localStorage.setItem("checkin", checkin);
+            localStorage.setItem("checkout", checkout);
+            localStorage.setItem("noites", noites);
+            localStorage.setItem("adultos", adultos);
+            localStorage.setItem("criancas", criancas);
+
+            window.location.href = "quartos-disponiveis.html";
+        });
+
+
+
+
+
+
+// TARIFAS - CARREGAR DADOS
+        

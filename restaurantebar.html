@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurantes & Bares | Hotel Imperial</title>
+
+    <link rel="stylesheet" href="resources/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* HERO */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                        url("resources/imagens/restaurante1.png") center/cover no-repeat;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero h1 {
+            color: #fff;
+            font-size: 3rem;
+            font-weight: 600;
+        }
+
+        /* SECTION */
+        .section-space {
+            padding: 80px 0;
+        }
+
+        .section-space h2 {
+            font-weight: 600;
+        }
+
+        .tag {
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            color: #8c7a6b;
+        }
+
+        .info-list li {
+            list-style: none;
+            margin-bottom: 8px;
+        }
+
+        .info-list i {
+            color: #8c7a6b;
+            margin-right: 8px;
+        }
+
+        .btn-custom {
+            background-color: #c9a24d;
+            color: #fff;
+            border-radius: 30px;
+            padding: 8px 22px;
+        }
+
+        .btn-custom:hover {
+            background-color: #b08f42;
+            color: #fff;
+        }
+
+        .btn-outline-custom {
+            border: 1px solid #c9a24d;
+            color: #020202;
+            border-radius: 30px;
+            padding: 8px 22px;
+        }
+
+        .btn-outline-custom:hover {
+            background-color: #b08f42;
+            color: #fff;
+        }
+
+        img {
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="menu">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">Hotel Imperial</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav ms-auto align-items-lg-center">
+                        <li class="nav-item"><a class="nav-link" href="quartos.html">Quartos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="minhas-reservas.html">Minhas Reservas</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="restaurantebar.html">Restaurante e Bar</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </section><section class="hero">
+    <div class="container">
+        <h1>RESTAURANTES & BARES</h1>
+    </div>
+</section>
+
+<section class="section-space">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <img src="resources/imagens/restaurante2.jpg" class="img-fluid" alt="Restaurante El Olivo">
+            </div>
+            <div class="col-md-6">
+                <span class="tag">RESTAURANTE</span>
+                <h2 class="mt-2">EL OLIVO</h2>
+                <p class="mt-3">
+                    Desfrute de uma experiência gastronômica única no El Olivo, onde
+                    ingredientes selecionados e sabores autênticos se unem para criar
+                    pratos sofisticados em um ambiente elegante e acolhedor.
+                </p>
+
+                <ul class="info-list mt-3 p-0">
+                    <li><i class="bi bi-check-circle"></i>Cozinha Mediterrânea</li>
+                    <li><i class="bi bi-clock"></i>Segunda a Domingo — 12:00 às 23:00</li>
+                </ul>
+
+                <div class="mt-4">
+                    <a href="#" class="btn btn-outline-custom me-2">Ver Menu</a>
+                    <a href="#" class="btn btn-custom">Ver Horários</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-space bg-light">
+    <div class="container">
+        <div class="row align-items-center flex-md-row-reverse">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <img src="resources/imagens/piscina.png" class="img-fluid" alt="Bar da Piscina">
+            </div>
+            <div class="col-md-6">
+                <h2>BAR DA PISCINA</h2>
+                <p class="mt-3">
+                    Um espaço descontraído e perfeito para aproveitar o dia.
+                    Oferecemos bebidas refrescantes, snacks leves e um ambiente
+                    ideal para relaxar ao ar livre.
+                </p>
+
+                <ul class="info-list mt-3 p-0">
+                    <li><i class="bi bi-cup-straw"></i>Drinks & Snacks</li>
+                    <li><i class="bi bi-clock"></i>10:00 às 20:00</li>
+                </ul>
+
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-space">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <img src="resources/imagens/bar.jpg" class="img-fluid" alt="Bar Bracara">
+            </div>
+            <div class="col-md-6">
+                <h2 class="mt-2"> BAR</h2>
+                <p class="mt-3">
+                    O Bar Bracara combina elegância e modernidade em um ambiente
+                    sofisticado, ideal para desfrutar de cocktails exclusivos e
+                    momentos de convívio.
+                </p>
+
+                <ul class="info-list mt-3 p-0">
+                    <li><i class="bi bi-cocktail"></i>Cocktails Autorais</li>
+                    <li><i class="bi bi-clock"></i>18:00 às 02:00</li>
+                </ul>
+
+                <div class="mt-4">
+                    <a href="#" class="btn btn-outline-custom me-2">Ver Menu</a>
+                    <a href="#" class="btn btn-custom">Ver Horários</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-dark text-white py-4">
+    <div class="container text-center">
+        <p class="mb-0">© 2035 Hotel Imperial. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
