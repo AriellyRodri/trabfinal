@@ -16,14 +16,6 @@ document.getElementById('bookingForm').addEventListener('submit', function (e) {
 
 
 
-
-
-
-
-
-
-
-
 // PESQUISA DE RESERVA (inicio.html)
 const bookingForm = document.getElementById("bookingForm");
 
@@ -32,6 +24,7 @@ if (bookingForm) {
     e.preventDefault();
 
     const reserva = {
+      id: Date.now(),
       checkin: document.getElementById("checkin").value,
       checkout: document.getElementById("checkout").value,
       adultos: document.getElementById("adultos").value,
@@ -43,6 +36,10 @@ if (bookingForm) {
     window.location.href = "quartos-disponiveis.html";
   });
 }
+
+const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
+reservas.push(reservaFinal);
+localStorage.setItem("reservas", JSON.stringify(reservas));
 
 
 // QUARTOS DISPONÍVEIS (quartos.html)
@@ -102,20 +99,6 @@ if (listaQuartos) {
   });
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // FUNÇÃO PARA CALCULAR NOITES
 function calcularNoites(checkin, checkout) {
   const entrada = new Date(checkin);
@@ -157,21 +140,21 @@ function formatarData(data) {
 }
 
 
+const reservaFinal = {
+  id: pesquisaReserva.id, // reaproveita o id
+  nome: document.getElementById("nome").value,
+  email: document.getElementById("email").value,
 
+  checkin: pesquisaReserva.checkin,
+  checkout: pesquisaReserva.checkout,
+  adultos: pesquisaReserva.adultos,
+  criancas: pesquisaReserva.criancas,
 
+  quarto: localStorage.getItem("quartoSelecionado"),
+  total: localStorage.getItem("valorTarifa") + " EUR",
 
-
-
-
-
-
-
-
-
-
-
-
-
+  data: new Date().toLocaleDateString()
+};
 
 // SALVAR DADOS NA PÁGINA INÍCIO
  document.getElementById("bookingForm").addEventListener("submit", function (e) {

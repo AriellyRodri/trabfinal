@@ -65,9 +65,10 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-white" onclick="mostrarSecao('contactos', this)">
-                            Contactos
+                        <a href="/inicio.html" class="nav-link text-white">
+                            HomePage
                         </a>
+
                     </li>
                 </ul>
 
@@ -80,14 +81,33 @@
             <main class="flex-grow-1 p-4">
 
                 <section id="financeira">
-                    <h2>Gestão Financeira</h2>
-                    <p>Aqui entram os dados financeiros do hotel.</p>
+                    <h3>Financeiro</h3>
+                    <div id="totalVendas"></div>
+                
+                    <!-- GRÁFICO -->
+                    <canvas id="graficoVendas" width="400" height="150"></canvas>
+                
+                    <div id="listaVendas"></div>
                 </section>
+
 
                 <section id="reservas" class="d-none">
                     <h2>Gestão de Reservas</h2>
-                    <p>Lista e controlo das reservas.</p>
+                
+                    <table class="table table-striped mt-3">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Nome</th>
+                                <th>Check-In</th>
+                                <th>Check-Out</th>
+                                <th>Total</th>
+                                <th>Ações</th>  
+                            </tr>
+                        </thead>
+                        <tbody id="listaReservas"></tbody>
+                    </table>
                 </section>
+
 
                 <section id="contactos" class="d-none">
                     <h2>Contactos</h2>
@@ -110,7 +130,9 @@
     </div>
 
     <!-- ================= JS ================= -->
+    <script src="/resources/js/script.js"></script>
     <script src="/admin/admin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </body>
 
