@@ -3,72 +3,72 @@ const SENHA_ADMIN = "1234";
 
 // Verificar se já está logado
 if (localStorage.getItem("adminLogado") === "true") {
-  mostrarAdmin();
+    mostrarAdmin();
 }
 
 function login() {
-  const usuario = document.getElementById("usuario").value;
-  const senha = document.getElementById("senha").value;
-  const erro = document.getElementById("erroLogin");
+    const usuario = document.getElementById("usuario").value;
+    const senha = document.getElementById("senha").value;
+    const erro = document.getElementById("erroLogin");
 
-  if (usuario === USUARIO_ADMIN && senha === SENHA_ADMIN) {
-    localStorage.setItem("adminLogado", "true");
-    mostrarAdmin();
-  } else {
-    erro.classList.remove("d-none");
-  }
+    if (usuario === USUARIO_ADMIN && senha === SENHA_ADMIN) {
+        localStorage.setItem("adminLogado", "true");
+        mostrarAdmin();
+    } else {
+        erro.classList.remove("d-none");
+    }
 }
 
 function mostrarAdmin() {
-  document.getElementById("loginArea").classList.add("d-none");
-  document.getElementById("adminArea").classList.remove("d-none");
+    document.getElementById("loginArea").classList.add("d-none");
+    document.getElementById("adminArea").classList.remove("d-none");
 }
 
 function logout() {
-  localStorage.removeItem("adminLogado");
-  location.reload();
+    localStorage.removeItem("adminLogado");
+    location.reload();
 }
 
 function mostrarSecao(secao, link) {
-  ["financeira", "reservas", "contactos"].forEach(id => {
-    document.getElementById(id).classList.add("d-none");
-  });
+    ["financeira", "reservas", "contactos"].forEach(id => {
+        document.getElementById(id).classList.add("d-none");
+    });
 
-  document.getElementById(secao).classList.remove("d-none");
+    document.getElementById(secao).classList.remove("d-none");
 
-  document.querySelectorAll(".nav-link").forEach(l => {
-    l.classList.remove("active");
-    l.classList.add("text-white");
-  });
+    document.querySelectorAll(".nav-link").forEach(l => {
+        l.classList.remove("active");
+        l.classList.add("text-white");
+    });
 
-  link.classList.add("active");
-  link.classList.remove("text-white");
+    link.classList.add("active");
+    link.classList.remove("text-white");
 
-  if (secao === "contactos") {
-    carregarContactos();
-  }
+    if (secao === "contactos") {
+        carregarContactos();
+    }
 }
 
 function carregarContactos() {
-  const lista = document.getElementById("listaContactos");
-  lista.innerHTML = "";
+    const lista = document.getElementById("listaContactos");
+    lista.innerHTML = "";
 
-  const contactos = JSON.parse(localStorage.getItem("contactos")) || [];
+    const contactos = JSON.parse(localStorage.getItem("contactos")) || [];
 
-  if (contactos.length === 0) {
-    lista.innerHTML = `
+    if (contactos.length === 0) {
+        lista.innerHTML = `
       <div class="alert alert-info">
         Ainda não há mensagens.
       </div>
     `;
-    return;
-  }
+        return;
+    }
 
-  contactos.forEach(c => {
-    const card = document.createElement("div");
-    card.className = "card mb-3";
+    contactos.forEach(c => {
+        const card = document.createElement("div");
+        card.className = "card mb-3";
 
-    card.innerHTML = `
+        card.innerHTML = `
       <div class="card-body">
         <h5 class="card-title">${c.nome} <small class="text-muted">(${c.email})</small></h5>
         <p class="card-text">${c.mensagem}</p>
@@ -76,8 +76,8 @@ function carregarContactos() {
       </div>
     `;
 
-    lista.appendChild(card);
-  });
+        lista.appendChild(card);
+    });
 }
 
 
