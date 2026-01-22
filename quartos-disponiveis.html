@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quartos Disponíveis | Hotel Salinger</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f6f6f6;
+        }
+
+        .navbar {
+            background: #000;
+        }
+
+        .navbar a {
+            color: #fff !important;
+        }
+
+        .page-title {
+            padding: 120px 0 40px;
+        }
+
+        .room-box {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .carousel img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .room-info {
+            padding: 30px;
+        }
+
+        .room-info h3 {
+            font-weight: 600;
+        }
+
+        .room-meta {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        .room-price {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .room-price span {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .room-price strong {
+            font-size: 1.4rem;
+            display: block;
+        }
+
+        footer {
+            background: #fff;
+            border-top: 1px solid #eee;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- MENU -->
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="inicio.html">Hotel Salinger</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="quartos-disponiveis.html">Quartos</a></li>
+                <li class="nav-item"><a class="nav-link" href="minhas-reservas.html">Minhas Reservas</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- TÍTULO -->
+<section class="page-title text-center">
+    <div class="container">
+        <h1>Quartos Disponíveis</h1>
+        <p class="text-muted">Selecione o quarto ideal para sua estadia</p>
+    </div>
+</section>
+
+<!-- QUARTO -->
+<div class="container">
+
+    <div class="room-box">
+        <div class="row g-0">
+
+            <!-- IMAGENS -->
+            <div class="col-md-7">
+                <div id="carouselRoom1" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="resources/imagens/quarto1.jpg" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="resources/imagens/quarto2.jpg" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="resources/imagens/quarto3.jpg" class="d-block w-100">
+                        </div>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselRoom1" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselRoom1" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- INFORMAÇÕES -->
+            <div class="col-md-5">
+                <div class="room-info">
+                    <h3>Meliá Room</h3>
+
+                    <div class="room-meta">
+                        Cama de casal ou duas camas de solteiro &nbsp; | &nbsp;
+                        Vista para a cidade &nbsp; | &nbsp;
+                        33 m²
+                    </div>
+
+                    <p>
+                        Quarto moderno e confortável, ideal para uma estadia relaxante,
+                        com design elegante, iluminação natural e excelente isolamento acústico.
+                    </p>
+
+                    <!-- PREÇO -->
+                    <div class="room-price">
+                        <span>A partir de</span>
+                        <strong>144 EUR / noite</strong>
+                        <span>Taxas incluídas</span>
+                    </div>
+
+                    <!-- BOTÃO -->
+                    <button class="btn btn-dark w-100 mt-4 selecionar-tarifa"
+                        data-quarto="Meliá Room"
+                        data-valor="144">
+                        Selecionar Tarifa →
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container text-center">
+        <p>© 2035 por Hotel Salinger. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<!-- SCRIPT FUNCIONAL -->
+<script>
+document.querySelectorAll(".selecionar-tarifa").forEach(botao => {
+    botao.addEventListener("click", function () {
+
+        const quarto = this.dataset.quarto;
+        const valor = this.dataset.valor;
+
+        localStorage.setItem("quartoSelecionado", quarto);
+        localStorage.setItem("valorTarifa", valor);
+
+        window.location.href = "tarifas.html";
+    });
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
