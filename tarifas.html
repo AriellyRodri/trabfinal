@@ -5,10 +5,7 @@
   <title>Confirmar Reserva | Hotel Salinger</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Fonte -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
@@ -17,21 +14,8 @@
       background: #e6e1d8;
     }
 
-    .navbar {
-      background: transparent;
-    }
-
     .page-container {
       padding: 120px 0 80px;
-    }
-
-    .form-box {
-      background: #e6e1d8;
-    }
-
-    .form-box h5 {
-      font-weight: 600;
-      margin-bottom: 20px;
     }
 
     .form-control, select {
@@ -40,19 +24,10 @@
       padding: 14px;
     }
 
-    .required {
-      color: red;
-    }
-
     .summary-card {
       background: #fff;
       padding: 25px;
       border: 1px solid #d4d0c8;
-    }
-
-    .summary-card h5 {
-      font-weight: 600;
-      margin-bottom: 20px;
     }
 
     .summary-line {
@@ -76,7 +51,6 @@
       margin-top: 20px;
     }
 
-    /* MODAL */
     .overlay {
       position: fixed;
       inset: 0;
@@ -93,65 +67,30 @@
       text-align: center;
       max-width: 420px;
       width: 100%;
-      border-radius: 6px;
-    }
-
-    .success-card h4 {
-      margin-bottom: 15px;
-      font-weight: 600;
-    }
-
-    .success-card button {
-      margin-top: 20px;
-      padding: 12px 30px;
-      border: none;
-      background: #000;
-      color: #fff;
     }
   </style>
 </head>
 
 <body>
 
-<!-- CONTEÚDO -->
 <section class="page-container">
   <div class="container">
     <div class="row">
 
-      <!-- FORMULÁRIO -->
+      <!-- FORM -->
       <div class="col-lg-7">
-        <div class="form-box">
+        <h5>INFORMAÇÕES DE CONTATO</h5>
 
-          <h5>INFORMAÇÕES DE CONTATO <small class="text-muted">* obrigatório</small></h5>
-
-          <div class="row g-3">
-            <div class="col-md-4">
-              <select class="form-control" required>
-                <option>Prefixo *</option>
-                <option>Sr.</option>
-                <option>Sra.</option>
-              </select>
-            </div>
-            <div class="col-md-4">
-              <input type="text" class="form-control" placeholder="Nome *" required>
-            </div>
-            <div class="col-md-4">
-              <input type="text" class="form-control" placeholder="Sobrenome *" required>
-            </div>
-
-            <div class="col-md-6">
-              <input type="text" class="form-control" placeholder="Telefone">
-            </div>
-            <div class="col-md-6">
-              <input type="text" class="form-control" placeholder="Telefone celular *" required>
-            </div>
-
-            <div class="col-12">
-              <input type="email" class="form-control" placeholder="Endereço de email *" required>
-              <small class="text-muted">Este é o e-mail para o qual enviaremos sua confirmação.</small>
-            </div>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <input id="nome" type="text" class="form-control" placeholder="Nome *" required>
           </div>
-
+          <div class="col-md-6">
+            <input id="sobrenome" type="text" class="form-control" placeholder="Sobrenome *" required>
+          </div>
+          <div class="col-12">
+            <input type="email" class="form-control" placeholder="Email *" required>
+          </div>
         </div>
       </div>
 
@@ -168,7 +107,6 @@
 
           <div class="summary-line">
             <span id="noites"></span>
-            <span></span>
           </div>
 
           <hr>
@@ -178,9 +116,7 @@
             <span class="total" id="total"></span>
           </div>
 
-          <button class="btn-confirmar" onclick="confirmarReserva()">
-            CONFIRMAR
-          </button>
+          <button class="btn-confirmar" onclick="confirmarReserva()">CONFIRMAR</button>
 
         </div>
       </div>
@@ -189,59 +125,52 @@
   </div>
 </section>
 
-<!-- MODAL SUCESSO -->
+<!-- MODAL -->
 <div class="overlay" id="overlay">
   <div class="success-card">
     <h4>Reserva confirmada 🎉</h4>
-    <p>Sua reserva foi realizada com sucesso.<br>
-       Enviamos a confirmação para o seu e-mail.</p>
-    <button onclick="window.location.href='inicio.html'">OK</button>
+    <p>Sua reserva foi realizada com sucesso.</p>
+    <button onclick="window.location.href='minhas-reservas.html'">Ver Reservas</button>
   </div>
 </div>
 
-<!-- JS -->
-<script src="resources/js/script.js"></script>
-
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const quarto = localStorage.getItem("quarto");
-    const preco = Number(localStorage.getItem("preco")) || 0;
-const noites = Number(localStorage.getItem("noites")) || 1;
+document.addEventListener("DOMContentLoaded", () => {
 
-    document.getElementById("nomeQuarto").innerText = quarto;
-    document.getElementById("precoNoite").innerText = `${preco.toFixed(2)} EUR`;
-    document.getElementById("noites").innerText = `${noites} noites`;
+  const quarto = localStorage.getItem("quartoSelecionado");
+  const valor = Number(localStorage.getItem("valorTarifa")) || 0;
+  const noites = Number(localStorage.getItem("noites")) || 1;
 
-    document.getElementById("total").innerText =
-      `${(preco * noites).toFixed(2)} EUR`;
-  });
-
-  function confirmarReserva() {
-    document.getElementById("overlay").style.display = "flex";
-  }
-</script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-    const noites = Number(localStorage.getItem("noites"));
-    const valor = Number(localStorage.getItem("valorTarifa"));
-    const quarto = localStorage.getItem("quartoSelecionado");
-
-    if (!noites || !valor) {
-        alert("Dados da reserva não encontrados");
-        return;
-    }
-
-    const total = noites * valor;
-
-    document.getElementById("nomeQuarto").innerText = quarto;
-    document.getElementById("noites").innerText = noites + " noite(s)";
-    document.getElementById("valorNoite").innerText = "€ " + valor.toFixed(2);
-    document.getElementById("valorTotal").innerText = "€ " + total.toFixed(2);
+  document.getElementById("nomeQuarto").innerText = quarto;
+  document.getElementById("precoNoite").innerText = valor.toFixed(2) + " EUR / noite";
+  document.getElementById("noites").innerText = noites + " noite(s)";
+  document.getElementById("total").innerText = (valor * noites).toFixed(2) + " EUR";
 });
-</script>
 
+function confirmarReserva() {
+
+  const nome = document.getElementById("nome").value;
+  const sobrenome = document.getElementById("sobrenome").value;
+
+  if (!nome || !sobrenome) {
+    alert("Preencha o nome completo.");
+    return;
+  }
+
+  const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
+
+  const novaReserva = {
+    nome: nome + " " + sobrenome,
+    data: new Date().toLocaleDateString("pt-PT"),
+    total: document.getElementById("total").innerText
+  };
+
+  reservas.push(novaReserva);
+  localStorage.setItem("reservas", JSON.stringify(reservas));
+
+  document.getElementById("overlay").style.display = "flex";
+}
+</script>
 
 </body>
 </html>
